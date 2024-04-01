@@ -125,3 +125,8 @@ RUN pip install "krb5>=0.5.1,<0.6" && \
 #     sed -i 's="PySpark"="SparkMagic PySpark"=g'  /opt/conda/share/jupyter/kernels/pysparkkernel/kernel.json
 
 ENV SHELL=/bin/bash
+
+USER $MAMBA_USER
+
+ENTRYPOINT ["jupyter-lab"]
+CMD ["--ServerApp.ip=0.0.0.0", "--ServerApp.port=8888", "--ServerApp.allow_origin=*", "--ServerApp.token=''", "--ServerApp.base_url=/jupyterlab/default"]
